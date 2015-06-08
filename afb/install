@@ -1,0 +1,23 @@
+#!/bin/bash
+if [ -z "$1" ];
+then
+	echo "no such <login>"
+fi
+if [ -z "$2" ];
+then
+	echo "no such <password>"
+fi
+if [ $# -ne 2 ]
+then
+	echo "Usage: curl https://finagin.github.io/afb/install | sh -s <login> <password>"
+	exit 1
+fi
+
+cd ~/
+mkdir -p Projects
+cd Projects
+hg clone https://$1:$2@bitbucket.org/triadlab/analytic-for-business
+
+cd analytic-for-business
+
+sh install
