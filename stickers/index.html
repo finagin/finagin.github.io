@@ -4,14 +4,35 @@
 		float: left;
 		width: 64px;
 		text-align: center;
+		font-size: 1.5em;
+	}
+	div {
+		display: inline-block;
 	}
 </style>
 <script>
-html = '';
-for(var i = 1; i < 2046; i++){
+document.addEventListener('click', function (){
+	setTimeout(function (){
+		if(page != location.hash.replace(/^#/, '') || 1){
+			location.reload();
+		}
+	}, 1e3);
+});
+var total		= 2046,	//	Всего смайлов
+    step		= 100,	//	Смайлов на странице
+    overlapping	= 10,	//	Нахлест соседних страниц
+    page		= location.hash.replace(/^#/, '') || 1;
+    html		= '<div>';	
+
+for(var i = 1; i < total / (step - overlapping) + 1; i++){
+	html += '<a href="#' + i + '">' + i + '</a>';
+}
+html += '</div><hr><div>';
+for(var i = (page-1)*(step - overlapping); i < total && i < (page-1)*(step - overlapping)+step; i++){
 	html += '<a href="//vk.com/images/stickers/' + i + '/352b.png">';
 	html += '<img src="//vk.com/images/stickers/' + i + '/64b.png">';
 	html += '</a>';
 }
+html += '</div>';
 document.write(html);
 </script>
