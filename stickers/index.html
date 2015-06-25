@@ -5,6 +5,14 @@
 		width: 64px;
 		text-align: center;
 		font-size: 1.5em;
+		text-decoration: none;
+	}
+	a.page {
+		color: #4d7198;
+	}
+	a.page.active {
+		color: #3b5998;
+		font-weight: 900;
 	}
 	div {
 		display: inline-block;
@@ -25,7 +33,7 @@ var total	= 2046,	//	Всего смайлов
     html	= '<div>';	
 
 for(var i = 1; i < total / (step - overlapping) + 1; i++){
-	html += '<a href="#' + i + '">' + i + '</a>';
+	html += '<a href="#' + i + '" class="page' + (i == page ? ' active' : '') + '">' + i + '</a>';
 }
 html += '</div><hr><div>';
 for(var i = ((page - 1) * (step - overlapping)) || 1; i < total && i < (page - 1) * (step - overlapping) + step; i++){
