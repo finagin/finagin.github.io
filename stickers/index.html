@@ -18,17 +18,17 @@ document.addEventListener('click', function (){
 		}
 	}, 1e3);
 });
-var total		= 2046,	//	Всего смайлов
-    step		= 100,	//	Смайлов на странице
+var total	= 2046,	//	Всего смайлов
+    step	= 100,	//	Смайлов на странице
     overlapping	= 10,	//	Нахлест соседних страниц
-    page		= location.hash.replace(/^#/, '') || 1;
-    html		= '<div>';	
+    page	= location.hash.replace(/^#/, '') || 1;
+    html	= '<div>';	
 
 for(var i = 1; i < total / (step - overlapping) + 1; i++){
 	html += '<a href="#' + i + '">' + i + '</a>';
 }
 html += '</div><hr><div>';
-for(var i = (page-1)*(step - overlapping); i < total && i < (page-1)*(step - overlapping)+step; i++){
+for(var i = ((page - 1) * (step - overlapping)) || 1; i < total && i < (page - 1) * (step - overlapping) + step; i++){
 	html += '<a href="//vk.com/images/stickers/' + i + '/352b.png">';
 	html += '<img src="//vk.com/images/stickers/' + i + '/64b.png">';
 	html += '</a>';
