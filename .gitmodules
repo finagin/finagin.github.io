@@ -8,3 +8,6 @@
 [submodule "chat"]
 	path = chat
 	url = https://github.com/finagin/chat.git
+[submodule "gps"]
+	path = gps
+	url = https://github.com/finagin/gps.git
