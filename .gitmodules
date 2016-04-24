@@ -11,3 +11,6 @@
 [submodule "gps"]
 	path = gps
 	url = https://github.com/finagin/gps.git
+[submodule "link"]
+	path = link
+	url = https://github.com/finagin/link.git
