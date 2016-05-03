@@ -14,3 +14,6 @@
 [submodule "link"]
 	path = link
 	url = https://github.com/finagin/link.git
+[submodule "wp-plugins"]
+	path = wp-plugins
+	url = https://github.com/finagin/wp-plugins.git
