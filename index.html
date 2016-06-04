@@ -3,11 +3,7 @@
 	<head>
 		<title>Finagin's profile</title>
 		<script>
-			if (location.protocol == 'https:') {
-				location.href = '/profile';
-			} else {
-				location.protocol = 'https:';
-			}
+			location.href = ['https:/', location.host, 'profile'].join('/');
 		</script>
 	</head>
 	<body>
