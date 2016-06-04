@@ -17,3 +17,6 @@
 [submodule "wp-plugins"]
 	path = wp-plugins
 	url = https://github.com/finagin/wp-plugins.git
+[submodule "profile"]
+	path = profile
+	url = https://github.com/finagin/profile.git
