@@ -20,3 +20,6 @@
 [submodule "profile"]
 	path = profile
 	url = https://github.com/finagin/profile.git
+[submodule "autoprint"]
+	path = autoprint
+	url = https://github.com/finagin/autoprint.git
