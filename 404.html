@@ -1,0 +1,23 @@
+<script>
+    (function p404() {
+        function notEmpty(item) {
+            return item.length
+        }
+
+        var oldPath, newHash;
+
+        oldPath = location.pathname.split("/").filter(notEmpty);
+
+        if (oldPath.length <= 1) {
+            return;
+        }
+
+        newHash = [
+            oldPath.pop(),
+            location.hash.replace("#", "").split("/").filter(notEmpty).join("/")
+        ].filter(notEmpty);
+
+        location.href = "/" + oldPath.join("/") + "#/" + newHash.join("/");
+    })();
+</script>
+<img src="//css-tricks.com/images/404.jpg" alt="Page Not Found (404)." style="position: absolute; left: 50%; top: 50%; margin-left: -285px; margin-top: -190px;">
