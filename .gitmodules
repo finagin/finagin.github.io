@@ -26,3 +26,6 @@
 [submodule "love"]
 	path = love
 	url = https://github.com/finagin/love.git
+[submodule "Gulpfile"]
+	path = Gulpfile
+	url = https://github.com/finagin/Gulpfile.js.git
