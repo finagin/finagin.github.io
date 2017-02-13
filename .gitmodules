@@ -29,3 +29,6 @@
 [submodule "Gulpfile"]
 	path = Gulpfile
 	url = https://github.com/finagin/Gulpfile.js.git
+[submodule "schedule"]
+	path = schedule
+	url = https://github.com/finagin/schedule.git
