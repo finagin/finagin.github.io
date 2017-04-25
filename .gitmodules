@@ -32,3 +32,6 @@
 [submodule "schedule"]
 	path = schedule
 	url = https://github.com/finagin/schedule.git
+[submodule "passwd"]
+	path = passwd
+	url = https://github.com/finagin/passwd.git
