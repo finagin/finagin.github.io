@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+echo "alias rcp='rsync --progress -r -e ssh '" >> ~/.bash_profile
+
+if [ -e ~/.config/fish/config.fish ]
+then
+   echo "alias rcp='rsync --progress -r -e ssh '" >> ~/.config/fish/config.fish
+fi
