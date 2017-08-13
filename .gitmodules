@@ -35,3 +35,6 @@
 [submodule "passwd"]
 	path = passwd
 	url = https://github.com/finagin/passwd.git
+[submodule "laravel-git-hooks"]
+	path = laravel-git-hooks
+	url = https://github.com/finagin/laravel-git-hooks.git
