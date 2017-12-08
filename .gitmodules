@@ -38,6 +38,6 @@
 [submodule "laravel-git-hooks"]
 	path = laravel-git-hooks
 	url = https://github.com/finagin/laravel-git-hooks.git
-[submodule "kai"]
-	path = kai
-	url = https://github.com/finagin/kai.git
+[submodule "envoy"]
+	path = envoy
+	url = https://github.com/finagin/envoy.git
