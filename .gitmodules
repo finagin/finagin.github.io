@@ -44,3 +44,6 @@
 [submodule "stail"]
 	path = stail
 	url = https://github.com/finagin/stail.git
+[submodule "tg"]
+	path = tg
+	url = https://github.com/finagin/tg_redirect.git
