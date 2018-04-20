@@ -47,3 +47,6 @@
 [submodule "tg"]
 	path = tg
 	url = https://github.com/finagin/tg_redirect.git
+[submodule "rsync"]
+	path = rsync
+	url = https://github.com/finagin/rsync.git
