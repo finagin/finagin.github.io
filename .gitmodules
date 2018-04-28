@@ -50,3 +50,6 @@
 [submodule "rsync"]
 	path = rsync
 	url = https://github.com/finagin/rsync.git
+[submodule "tg-disk-checker"]
+	path = tg-disk-checker
+	url = https://github.com/finagin/tg-disk-checker.git
