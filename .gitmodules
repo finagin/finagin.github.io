@@ -53,3 +53,6 @@
 [submodule "tg-disk-checker"]
 	path = tg-disk-checker
 	url = https://github.com/finagin/tg-disk-checker.git
+[submodule "dotfiles"]
+	path = dotfiles
+	url = https://github.com/finagin/dotfiles.git
