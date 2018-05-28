@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+grep "net.inet.ip.ttl=65" /etc/sysctl.conf > /dev/null 2>&1 \
+  || sudo sh -c 'echo "net.inet.ip.ttl=65\n" >> /etc/sysctl.conf'
+
