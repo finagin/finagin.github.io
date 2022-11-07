@@ -1,13 +1,9 @@
 [submodule "debts"]
 	path = debts
 	url = https://github.com/finagin/debts-prototype.git
-
 [submodule "queue"]
 	path = queue
 	url = https://github.com/finagin/queue.git
-[submodule "chat"]
-	path = chat
-	url = https://github.com/finagin/chat.git
 [submodule "gps"]
 	path = gps
 	url = https://github.com/finagin/gps.git
