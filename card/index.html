@@ -43,8 +43,7 @@
 
         .card {
             /* Styling */
-            width: 100%;
-            max-width: 700px;
+            width: 700px;
             height: 400px;
             margin: 0 auto;
             background: rgb(20, 20, 20);
@@ -158,6 +157,8 @@
         @media (max-width: 640px) {
             .card {
                 transform: scale(.5);
+                width: 640px;
+                margin-left: calc((100% - 640px)/2);
             }
 
             .container:hover .card {
