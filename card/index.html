@@ -10,9 +10,9 @@
         /* Hack for touchscreens */
         document.addEventListener("touchstart", () => false, false);
     </script>
-    
+
     <style>
-        @import 'https://fonts.googleapis.com/css?family=Open+Sans|Roboto:300';
+        @import "https://fonts.googleapis.com/css?family=Roboto:100,900|Roboto+Serif:300";
         @import "https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css";
 
         * {
@@ -77,14 +77,14 @@
         .logo {
             outline: 1px solid #19F6E8;
             display: inline-block;
-            padding: 15px 40px;
+            padding: 1.25rem 2.5rem;
 
             text-transform: uppercase;
             font-family: 'Roboto', sans-serif;
-            font-size: 1.4em;
+            font-size: 1.5rem;
             font-weight: normal;
-            line-height: 32px;
-            letter-spacing: 8px;
+            line-height: 2rem;
+            letter-spacing: .375rem;
         }
 
         /* Back styling */
@@ -94,8 +94,25 @@
         }
 
         .name {
+            font-weight: 900;
             color: #3B3B3B;
             margin-bottom: 0;
+            font-size: 2.25em;
+        }
+        
+        .job-title {
+            margin-top: 0;
+            font-weight: 100;
+            font-size: 1.25em;
+        }
+
+        .name, .job-title {
+            font-family: 'Roboto', sans-serif;
+            display: block;
+            width: 19rem;
+            margin-right: 19rem;
+            text-align: justify;
+            text-align-last: justify;
         }
 
         p {
@@ -107,6 +124,9 @@
             bottom: 30px;
             left: 30px;
             color: #3b3b3b;
+            font-family: 'Roboto Serif', ui-serif;
+            font-weight: 300;
+            font-size: .875rem;
         }
 
         .property {
@@ -118,18 +138,35 @@
             color: #3b3b3b;
         }
 
-        .info a:hover, .info a:focus {
+        .info a:hover,
+        .info a:focus {
             color: #fff;
         }
 
+        .flip {
+            position: absolute;
+            bottom: 1rem;
+            right: 1rem;
+            color: #15CCC0;
+            display: none;
+        }
+
         /* Make semi-responsive */
-        @media (max-width: 700px) {
+        @media (max-width: 640px) {
             .card {
                 transform: scale(.5);
             }
 
             .container:hover .card {
                 transform: scale(.5) rotateY(-180deg) translateZ(1px);
+            }
+
+            .flip {
+                display: block;
+            }
+
+            .info {
+                font-size: 1.25em;
             }
         }
     </style>
@@ -140,11 +177,12 @@
 
         <div class="front side">
             <h1 class="logo">Igor Finagin</h1>
+            <i class="fa fa-fw fa-3x fa-hand-o-up flip" aria-hidden="true"></i>
         </div>
 
         <div class="back side">
-            <h3 class="name">Igor Finagin</h3>
-            <div>Software developer</div>
+            <h2 class="name">Igor Finagin</h2>
+            <h3 class="job-title">Software developer</h3>
             <div class="info">
                 <p>
                     <span class="property"><i class="fa fa-fw fa-lg fa-envelope-o" aria-hidden="true"></i></span>
@@ -152,7 +190,7 @@
                 </p>
                 <p>
                     <span class="property"><i class="fa fa-fw fa-lg fa-phone" aria-hidden="true"></i></span>
-                    <a href="tel:+79179360087">  +7 (917) 936-00-87</a>
+                    <a href="tel:+79179360087">+7 (917) 936-00-87</a>
                 </p>
                 <p>
                     <span class="property"><i class="fa fa-fw fa-lg fa-phone" aria-hidden="true"></i></span>
