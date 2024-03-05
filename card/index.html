@@ -1,221 +1,109 @@
-<!DOCTYPE html>
 <html lang="en" class="-webkit-">
 <head>
     <title>Finagin</title>
 
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.bunny.net">
+    <link href="https://fonts.bunny.net/css?family=roboto:300,900|roboto-slab:300&display=swap" rel="stylesheet" />
+
+    <script src="https://cdn.tailwindcss.com/3.4.1"></script>
     <script>
-        /* Hack for touchscreens */
-        document.addEventListener("touchstart", () => false, false);
+        let plugin = tailwind.plugin;
+
+        /** @type {import('tailwindcss').Config} */
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Roboto"', 'ui-sans-serif', 'system-ui', 'sans-serif', '"Apple Color Emoji"', '"Segoe UI Emoji"', '"Segoe UI Symbol"', '"Noto Color Emoji"'],
+                        serif: ['"Roboto Slab"', 'ui-serif', '"Georgia"', '"Cambria"', '"Times New Roman"', '"Times"', 'serif'],
+                    },
+                    spacing: {
+                        68: '17rem',
+                        120: '30rem',
+                    }
+                }
+            },
+            plugins: [
+                plugin(function({matchUtilities}) {
+                    matchUtilities({
+                        'rotate-y': (value) => ({ transform: `perspective(36rem) rotateY(${value}deg) translateZ(1px)` }),
+                    })
+                }),
+            ],
+        }
     </script>
-
-    <style>
-        @import "https://fonts.googleapis.com/css?family=Roboto:300,900|Roboto+Serif:300";
-        @import "https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css";
-
-        * {
-            box-sizing: border-box;
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .transition {
+                transform-style: preserve-3d;
+                transition: 0.8s;
+            }
         }
 
-        body {
-            background: #757575;
-            overflow-x: hidden;
-        }
-
-        .container {
-            width: 100%;
-            perspective: 800px;
-
-            /* Styling */
-            color: #fff;
-            font-family: 'Open Sans', sans-serif;
-            text-transform: uppercase;
-            letter-spacing: 4px;
-
-            /* Center it */
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-        }
-
-        .card {
-            /* Styling */
-            width: 700px;
-            height: 400px;
-            margin: 0 auto;
-            background: rgb(20, 20, 20);
-            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
-
-            /* Card flipping effects */
-            transform-style: preserve-3d;
-            transition: 0.6s;
-        }
-
-        .side {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            backface-visibility: hidden;
-            /* Fix Chrome rendering bug */
-            transform: rotate(0deg) translateZ(1px);
-        }
-
-        /* Flip the card on hover */
-        .container:hover .card,
-        .back {
-            transform: rotateY(-180deg) translateZ(1px);
-        }
-
-        /* Front styling */
-        .front {
-            /* Center the name + outline (almost) */
-            line-height: 390px; /* Height - some (because visual center is a little higher than actual center) */
-            text-align: center;
-        }
-
-        .logo {
-            outline: 1px solid #19F6E8;
-            display: inline-block;
-            padding: 1.25rem 2.5rem;
-
-            text-transform: uppercase;
-            font-family: 'Roboto', sans-serif;
-            font-size: 1.5rem;
-            font-weight: normal;
-            line-height: 2rem;
-            letter-spacing: .375rem;
-        }
-
-        /* Back styling */
-        .back {
-            background: #15CCC0;
-            padding: 30px;
-        }
-
-        .name {
-            font-weight: 900;
-            color: #3B3B3B;
-            margin-bottom: 0;
-            font-size: 2.25em;
-        }
-
-        .job-title {
-            margin-top: 0;
-            font-weight: 300;
-            font-size: 1.25em;
-        }
-
-        .name, .job-title {
-            font-family: 'Roboto', sans-serif;
-            display: block;
-            width: 19rem;
-            margin-right: 19rem;
-            text-align: justify;
-            text-align-last: justify;
-        }
-
-        p {
-            margin: 0.8em 0;
-        }
-
-        .info {
-            position: absolute;
-            bottom: 30px;
-            left: 30px;
-            color: #3b3b3b;
-            font-family: 'Roboto Serif', ui-serif;
-            font-weight: 300;
-            font-size: .875rem;
-        }
-
-        .property {
-            color: #fff;
-        }
-
-        .info a {
-            text-transform: none !important;
-            color: #3b3b3b;
-        }
-
-        .info a:hover,
-        .info a:focus {
-            color: #fff;
-        }
-
-        .flip {
-            position: absolute;
-            bottom: 1rem;
-            right: 1rem;
-            color: #15CCC0;
-            display: none;
-        }
-
-        /* Make semi-responsive */
-        @media (max-width: 640px) {
+        @layer components {
             .card {
-                transform: scale(.5);
-                width: 640px;
-                margin-left: calc((100% - 640px)/2);
+                @apply absolute max-w-96 max-h-52 lg:max-w-120 lg:max-h-68 w-full h-full transition;
+                backface-visibility: hidden;
             }
-
-            .container:hover .card {
-                transform: scale(.5) rotateY(-180deg) translateZ(1px);
+            .front {
+                @apply bg-slate-900 text-white     rotate-y-[0]    group-hover:rotate-y-[-180]
             }
-
-            .flip {
-                display: block;
+            .back {
+                @apply bg-teal-500  text-slate-900 rotate-y-[-180] group-hover:rotate-y-[-360]
             }
-
-            .info {
-                font-size: 1.25em;
-            }
-        }
-        
-        @media (hover: none) {
-            .flip {
-                display: block;
+            .list-icon {
+                @apply w-4 h-4 lg:w-5 lg:h-5 inline-block stroke-white;
             }
         }
     </style>
+    <script>document.addEventListener("touchstart", () => false, false);</script>
 </head>
-<body>
-<div class="container">
-    <div class="card">
+<body class="antialiased">
+<div class="relative flex justify-center items-center min-h-screen bg-slate-200 selection:bg-red-500 selection:text-white">
+    <div class="container group">
+        <div class="w-96 h-52 lg:w-120 lg:h-68 m-auto">
+            <div class="card front flex justify-center items-center m-auto">
+                <h1 class="text-xl lg:text-3xl font-sans font-light uppercase text-white px-4 py-2 border border-teal-500">Igor Finagin</h1>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" class="absolute bottom-0 right-0 m-1 w-4 h-4 fill-teal-500 stroke-1">
+                    <path fill-rule="evenodd" d="M3.5 9.75A2.75 2.75 0 0 1 6.25 7h5.19L9.22 9.22a.75.75 0 1 0 1.06 1.06l3.5-3.5a.75.75 0 0 0 0-1.06l-3.5-3.5a.75.75 0 1 0-1.06 1.06l2.22 2.22H6.25a4.25 4.25 0 0 0 0 8.5h1a.75.75 0 0 0 0-1.5h-1A2.75 2.75 0 0 1 3.5 9.75Z" clip-rule="evenodd" />
+                </svg>
+            </div>
+            <div class="card back p-4">
+                <div class="w-max">
+                    <div class="text-2xl lg:text-3xl font-sans font-black leading-4 lg:leading-5 uppercase">Igor Finagin</div>
+                    <div class="text-sm  lg:text-lg  font-sans font-light leading-4 lg:leading-5 uppercase text-white py-0.5" style="text-align-last: justify">Software Developer</div>
+                </div>
 
-        <div class="front side">
-            <h1 class="logo">Igor Finagin</h1>
-            <i class="fa fa-fw fa-3x fa-hand-o-up flip" aria-hidden="true"></i>
-        </div>
-
-        <div class="back side">
-            <h2 class="name">Igor Finagin</h2>
-            <h3 class="job-title">Software developer</h3>
-            <div class="info">
-                <p>
-                    <span class="property"><i class="fa fa-fw fa-lg fa-envelope-o" aria-hidden="true"></i></span>
-                    <a href="mailto:igor@finag.in">Igor@Finag.in</a>
-                </p>
-                <p>
-                    <span class="property"><i class="fa fa-fw fa-lg fa-phone" aria-hidden="true"></i></span>
-                    <a href="tel:+79179360087">+7 (917) 936-00-87</a>
-                </p>
-                <p>
-                    <span class="property"><i class="fa fa-fw fa-lg fa-phone" aria-hidden="true"></i></span>
-                    <a href="tel:+996776040087">+996 (776) 04-00-87</a>
-                </p>
-                <p>
-                    <span class="property"><i class="fa fa-fw fa-lg fa-rss" aria-hidden="true"></i></span>
-                    <a href="https://t.me/+Y1i-xYe26NNhMDBi">Finagin's Channel</a>
-                </p>
-                <!---
-                <p>
-                    <span class="property"><i class="fa fa-fw fa-lg fa-instagram" aria-hidden="true"></i></span>
-                    <a href="https://instagram.com/finagin/">@finagin</a>
-                </p>
-                --->
+                <ul class="list-none text-sm lg:text-lg bottom-0 absolute pb-4 font-serif font-light">
+                    <li>
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="list-icon">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75" />
+                        </svg>
+                        <a href="mailto:Igor@Finag.in">Igor@Finag.in</a>
+                    </li>
+                    <li>
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="list-icon">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 0 0 2.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 0 1-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 0 0-1.091-.852H4.5A2.25 2.25 0 0 0 2.25 4.5v2.25Z" />
+                        </svg>
+                        <a href="tel:+79179360087">+7 (917) 936-00-87</a>
+                    </li>
+                    <li>
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="list-icon">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 0 0 2.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 0 1-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 0 0-1.091-.852H4.5A2.25 2.25 0 0 0 2.25 4.5v2.25Z" />
+                        </svg>
+                        <a href="tel:+996776040087">+996 (776) 04-00-87</a>
+                    </li>
+                    <li>
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="list-icon">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M12.75 19.5v-.75a7.5 7.5 0 0 0-7.5-7.5H4.5m0-6.75h.75c7.87 0 14.25 6.38 14.25 14.25v.75M6 18.75a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Z" />
+                        </svg>
+                        <a href="https://t.me/+Y1i-xYe26NNhMDBi">Finagin's Channel</a>
+                    </li>
+                </ul>
             </div>
         </div>
     </div>
